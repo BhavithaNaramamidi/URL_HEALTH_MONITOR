@@ -14,17 +14,6 @@ Features
 -  Clear all check logs with one click
 
 ---
-
-## 📁 Project Structure
-
-
-├── app.py # Main Streamlit app
-├── llm_utils.py # Handles local LLM summary
-├── requirements.txt # Dependencies
-├── Dockerfile # Docker configuration
-└── url_health.db # SQLite database
----
-
 ## 🛠️ Installation & Usage
 
 Step 1: Install Python Packages
