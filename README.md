@@ -1,51 +1,47 @@
-# URL_HEALTH_MONITOR
-URL Health Monitor is a streamlined web application built with Python, Streamlit, and SQLite to check the status of multiple websites in real-time. It allows users to monitor the uptime and response time of URLs and visualize their performance history over time.
+# 🌐 URL Health Monitor App (with Local LLM Summary)
 
-🔍 Features
-🔗 Enter multiple URLs and check their status (UP/DOWN)
+This is a Streamlit-based web application that monitors the health (availability and response time) of one or more URLs. It logs results in a local SQLite database and optionally summarizes them using a locally running LLM like **TinyLlama via Ollama** — ensuring full privacy and offline functionality.
 
-⚡ View response time in milliseconds
+---
 
-💾 Stores historical data using SQLite
+Features
 
-📊 See uptime percentage and trends with real-time charts
+-  Check the availability (UP/DOWN) of any URL
+-  View response times and uptime percentages
+-  Automatically generate summaries using a local LLM
+-  Persistent logging using SQLite
+-  View full check history
+-  Clear all check logs with one click
 
-🧠 Clean, minimal interface built with Streamlit
+---
 
-⚙️ Tech Stack
-Python – Core programming language
+## 📁 Project Structure
 
-Streamlit – For building the frontend UI
 
-Requests – To perform HTTP health checks
+├── app.py # Main Streamlit app
+├── llm_utils.py # Handles local LLM summary
+├── requirements.txt # Dependencies
+├── Dockerfile # Docker configuration
+└── url_health.db # SQLite database
+---
 
-SQLite – To store health metrics
+## 🛠️ Installation & Usage
 
-Pandas + Matplotlib – For data handling and visualization
-
-🚀 Getting Started
-🔧 Run Locally (Without Docker)
-bash
-Copy
-Edit
-# 1. Clone the repository
-git clone https://github.com/your-username/url-health-monitor.git
-cd url-health-monitor
-
-# 2. Install dependencies
+Step 1: Install Python Packages
 pip install -r requirements.txt
-
-# 3. Launch the app
+Step 2: Start Ollama + Load Model
+ollama run tinyllama
+Make sure it's running on localhost:11434
+Step 3: Run the Streamlit App
 streamlit run app.py
-Visit http://localhost:8501 in your browser.
 
-🐳 Run with Docker (Optional)
-bash
-Copy
-Edit
-# Build the Docker image
-docker build -t url-health-monitor .
+Docker Usage 
+If you prefer using Docker:
+🧱 Build the image
+docker build -t url-monitor .
+▶️ Run the container
+docker run -p 8501:8501 --add-host=host.docker.internal:host-gateway url-monitor
+⚠️ Make sure ollama is installed on the host machine and running locally.
 
-# Run the Docker container
-docker run -p 8501:8501 url-health-monitor
-Then open: http://localhost:8501
+🧠 Local LLM Summary (llm_utils.py)
+The app uses llm_utils.py to send data to a local LLM (like TinyLlama) and fetches natural language summaries. This is useful for users to understand large URL check results quickly.
